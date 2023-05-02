@@ -287,8 +287,8 @@ class DslBase(object):
             # typed param
             if pinfo and 'type' in pinfo:
                 # don't serialize empty lists and dicts for typed fields
-                if value in ({}, []):
-                    continue
+                # if value in ({}, []):
+                #     continue
 
                 # multi-values are serialized as list of dicts
                 if pinfo.get('multi'):
@@ -423,8 +423,8 @@ class ObjectBase(AttrDict):
 
             # don't serialize empty values
             # careful not to include numeric zeros
-            if v in ([], {}, None):
-                continue
+            # if v in ([], {}, None):
+            #     continue
 
             out[k] = v
         return out
@@ -440,8 +440,8 @@ class ObjectBase(AttrDict):
             except ValidationException as e:
                 errors.setdefault(name, []).append(e)
 
-            if name in self._d_ or data not in ([], {}, None):
-                self._d_[name] = data
+            # if name in self._d_ or data not in ([], {}, None):
+            self._d_[name] = data
 
         if errors:
             raise ValidationException(errors)
